@@ -1,13 +1,15 @@
-import { Box, Button, ButtonGroup, Flex, Heading, IconButton, Spacer } from '@chakra-ui/react'
+import { Box, Button, ButtonGroup, Drawer, DrawerBody, DrawerContent, DrawerHeader, DrawerOverlay, Flex, Heading, IconButton, Spacer, useDisclosure } from '@chakra-ui/react'
 import { HiMenu } from "react-icons/hi";
 import React from 'react'
 
 const MasterLayout = () => {
+    const { isOpen, onOpen, onClose } = useDisclosure()
+
     return (
         <>
             <Flex direction="column" height="100vh">
                 <Flex minWidth='full' bg="tertiary.500" alignItems='center' gap='2' p='2'>
-                    <IconButton aria-label='Search database' colorScheme='primary' icon={<HiMenu />} />
+                    <IconButton onClick={onOpen} aria-label='Search database' colorScheme='primary' icon={<HiMenu />} />
                     <Box>
                         <Heading size='md'>Space Zone</Heading>
                     </Box>
@@ -17,6 +19,17 @@ const MasterLayout = () => {
                         <Button colorScheme='primary'>Log in</Button>
                     </ButtonGroup>
                 </Flex>
+                <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
+                    <DrawerOverlay />
+                    <DrawerContent bg="primary.500">
+                        <DrawerHeader borderBottomWidth='1px'>Basic Drawer</DrawerHeader>
+                        <DrawerBody>
+                            <p>Some contents...</p>
+                            <p>Some contents...</p>
+                            <p>Some contents...</p>
+                        </DrawerBody>
+                    </DrawerContent>
+                </Drawer>
                 <Box flex="1" p={4}>
                     Body
                 </Box>
