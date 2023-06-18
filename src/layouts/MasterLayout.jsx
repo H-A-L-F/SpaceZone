@@ -1,7 +1,7 @@
 import { Box, Button, ButtonGroup, Drawer, DrawerBody, DrawerContent, DrawerHeader, DrawerOverlay, Flex, Heading, IconButton, Spacer, useDisclosure } from '@chakra-ui/react'
 import { HiMenu } from "react-icons/hi";
 import React from 'react'
-import { Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 
 const MasterLayout = ({ children }) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -24,9 +24,7 @@ const MasterLayout = ({ children }) => {
                 <DrawerContent bg="primary.500">
                     <DrawerHeader borderBottomWidth='1px'>Space Zone</DrawerHeader>
                     <DrawerBody>
-                        <p>Some contents...</p>
-                        <p>Some contents...</p>
-                        <p>Some contents...</p>
+                        <NavLink to="/space/add">Add Space</NavLink>
                     </DrawerBody>
                 </DrawerContent>
             </Drawer>

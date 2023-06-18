@@ -4,7 +4,7 @@ import React from 'react'
 const AddSpace = () => {
   return (
     <Flex flexDir="column">
-        <Heading>Add New Space</Heading>
+        <Heading color="primary.700">Add New Space</Heading>
     </Flex>
   )
 }
