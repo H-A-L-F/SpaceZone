@@ -5,9 +5,9 @@ import MasterLayout from './layouts/MasterLayout';
 function App() {
   return (
     <>
-    <MasterLayout>
-      
-    </MasterLayout>
+      <MasterLayout>
+        <p>Hello World</p>
+      </MasterLayout>
     </>
   );
 }
