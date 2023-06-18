@@ -1,4 +1,5 @@
-import { Box, Button, ButtonGroup, Flex, Heading, Spacer } from '@chakra-ui/react'
+import { Box, Button, ButtonGroup, Flex, Heading, IconButton, Spacer } from '@chakra-ui/react'
+import { HiMenu } from "react-icons/hi";
 import React from 'react'
 
 const MasterLayout = () => {
@@ -6,6 +7,7 @@ const MasterLayout = () => {
         <>
             <Flex direction="column" height="100vh">
                 <Flex minWidth='full' bg="tertiary.500" alignItems='center' gap='2' p='2'>
+                    <IconButton aria-label='Search database' colorScheme='primary' icon={<HiMenu />} />
                     <Box>
                         <Heading size='md'>Space Zone</Heading>
                     </Box>
