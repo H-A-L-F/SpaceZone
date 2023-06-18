@@ -4,7 +4,7 @@ import React from 'react'
 const MasterLayout = () => {
     return (
         <>
-            <Flex minWidth='max-content' bg="" alignItems='center' gap='2'>
+            <Flex minWidth='max-content' bg="primary.500" alignItems='center' gap='2'>
                 <Box p='2'>
                     <Heading size='md'>Chakra App</Heading>
                 </Box>
