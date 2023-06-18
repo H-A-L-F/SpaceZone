@@ -1,18 +1,18 @@
 import React from 'react';
 import MasterLayout from './layouts/MasterLayout';
-import { Route, Router } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
+import Home from './pages/Home';
+import NotFound from './pages/NotFound';
 
 
 function App() {
   return (
-    <Router>
+    <Routes>
       <Route path='/' element={<MasterLayout />}>
-        
+        <Route path='home' element={<Home />}/>
       </Route>
-      <Route path='*'>
-
-      </Route>
-    </Router>
+      <Route path='*' element={<NotFound />}/>
+    </Routes>
   );
 }
 
