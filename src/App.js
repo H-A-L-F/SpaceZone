@@ -1,14 +1,18 @@
 import React from 'react';
 import MasterLayout from './layouts/MasterLayout';
+import { Route, Router } from 'react-router-dom';
 
 
 function App() {
   return (
-    <>
-      <MasterLayout>
-        <p>Hello World</p>
-      </MasterLayout>
-    </>
+    <Router>
+      <Route path='/' element={<MasterLayout />}>
+        
+      </Route>
+      <Route path='*'>
+
+      </Route>
+    </Router>
   );
 }
 

@@ -1,6 +1,7 @@
 import { Box, Button, ButtonGroup, Drawer, DrawerBody, DrawerContent, DrawerHeader, DrawerOverlay, Flex, Heading, IconButton, Spacer, useDisclosure } from '@chakra-ui/react'
 import { HiMenu } from "react-icons/hi";
 import React from 'react'
+import { Outlet } from 'react-router-dom';
 
 const MasterLayout = ({ children }) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -31,6 +32,7 @@ const MasterLayout = ({ children }) => {
             </Drawer>
             <Box flex="1" p={4}>
                 {children}
+                <Outlet />
             </Box>
         </Flex>
     )
