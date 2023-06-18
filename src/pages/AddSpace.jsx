@@ -1,10 +1,13 @@
 import { Button, Flex, FormControl, FormLabel, Heading, Input, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, Spacer, Textarea } from '@chakra-ui/react'
 import React, { useState } from 'react'
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
+import { FB_STORAGE } from '../lib/Firebase'
 
 const AddSpace = () => {
     const [name, setName] = useState()
     const [desc, setDesc] = useState('')
     const [price, setPrice] = useState('1,000,000')
+    const [imageUpload, setImageUpload] = useState()
 
     const handleNameChange = (e) => {
         const inputValue = e.target.value
@@ -20,7 +23,19 @@ const AddSpace = () => {
     const parse = (val) => val.replace(/^\$/, '')
 
     const handleSubmit = () => {
+        if (!imageUpload) return
 
+        console.log(imageUpload)
+        console.log(`images/${imageUpload.name}`)
+        const imageRef = ref(FB_STORAGE, `images/${imageUpload.name}`)
+        
+        console.log(ref)
+
+        uploadBytes(imageRef, imageUpload).then((snapshot) => {
+            getDownloadURL(snapshot.ref).then((url) => {
+                console.log(url)
+            })
+        })
     }
 
     return (
@@ -59,6 +74,13 @@ const AddSpace = () => {
                     </NumberInputStepper>
                 </NumberInput>
             </FormControl>
+            <input
+                type='file'
+                accept='image/*'
+                onChange={(e) => {
+                    setImageUpload(e.target.files[0])
+                }}
+            />
 
             <Flex mt="8">
                 <Spacer />
