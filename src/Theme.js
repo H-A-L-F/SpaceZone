@@ -7,8 +7,20 @@ const config = {
     useSystemColorMode: false,
 }
 
+const styles = {
+    global: {
+        bg: "quartery.50",
+        color: "quartery.50",
+        body: {
+            bg: "quartery.50",
+            color: "quartery.50"
+        },
+    }
+}
+
 const theme = extendTheme({
     config,
+    styles,
     colors: {
         primary: {
             50: "#F2F3F1",
