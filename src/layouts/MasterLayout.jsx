@@ -1,4 +1,4 @@
-import { Box, Button, ButtonGroup, Drawer, DrawerBody, DrawerContent, DrawerHeader, DrawerOverlay, Flex, Heading, IconButton, Spacer, useDisclosure } from '@chakra-ui/react'
+import { Box, Button, ButtonGroup, Center, Drawer, DrawerBody, DrawerContent, DrawerHeader, DrawerOverlay, Flex, Heading, IconButton, Spacer, Text, useDisclosure } from '@chakra-ui/react'
 import { HiMenu } from "react-icons/hi";
 import React from 'react'
 import { NavLink, Navigate, Outlet, useLocation, useNavigate } from 'react-router-dom';
@@ -21,6 +21,8 @@ const MasterLayout = () => {
         })
     }
 
+    console.log(user)
+
     return (
         <Flex direction="column" height="100vh">
             <Flex minWidth='full' bg="tertiary.500" alignItems='center' gap='2' p='2'>
@@ -30,8 +32,9 @@ const MasterLayout = () => {
                 </Box>
                 <Spacer />
                 <ButtonGroup gap='2'>
-                    <Button colorScheme='secondary'>Sign Up</Button>
-                    <Button colorScheme='primary'>Log in</Button>
+                    <Center fontSize="lg" fontWeight="bold">
+                        {user.username}
+                    </Center>
                     <Button onClick={handleLogout} colorScheme='primary'>Logout</Button>
                 </ButtonGroup>
             </Flex>
