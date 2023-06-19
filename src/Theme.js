@@ -1,4 +1,6 @@
 import {
+    defineStyle,
+    defineStyleConfig,
     extendTheme
 } from '@chakra-ui/react';
 import { inputAnatomy } from '@chakra-ui/anatomy'
@@ -17,7 +19,17 @@ const baseStyle = definePartsStyle({
     },
 })
 
+const primaryBtn = defineStyle({
+    color: "quartry.50",
+    _hover: { color: "primary.700", bg: "quartery.50" },
+    textColor: "quartry.50",
+})
+
 const inputTheme = defineMultiStyleConfig({ baseStyle })
+
+export const buttonTheme = defineStyleConfig({
+    variants: { primaryBtn },
+})
 
 const config = {
     initialColorMode: 'light',
@@ -94,6 +106,7 @@ const theme = extendTheme({
         Input: inputTheme,
         NumberInput: inputTheme,
         TexteInput: inputTheme,
+        Button: buttonTheme,
     },
 });
 

@@ -24,7 +24,7 @@ const MasterLayout = ({ children }) => {
                 <DrawerContent bg="primary.500">
                     <DrawerHeader borderBottomWidth='1px'>Space Zone</DrawerHeader>
                     <DrawerBody>
-                        <Button variant="ghost" w="full" alignContent="initial">
+                        <Button variant="primaryBtn" w="full" alignContent="initial">
                             <NavLink to="/space/add">Add Space</NavLink>
                             <Spacer />
                         </Button>
