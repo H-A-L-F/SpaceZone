@@ -42,8 +42,8 @@ const AddSpace = () => {
         uploadBytes(imageRef, imageUpload).then((snapshot) => {
             getDownloadURL(snapshot.ref).then((url) => {
                 const userRef = doc(FB_DB, "user", user.id)
-                const spaceRef = collection(userRef, "space")
-                addDoc(spaceRef, constructSpace(name, desc, price, url))
+                const spaceRef = collection(FB_DB, "space")
+                addDoc(spaceRef, constructSpace(name, desc, price, url, userRef))
                     .then(() => {
                         toast({
                             title: `Successfully added space!`,

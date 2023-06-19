@@ -17,7 +17,7 @@ const MasterLayout = () => {
         })
     }
 
-    if (!user || !JSON.parse(window.localStorage.getItem('user'))) {
+    if (!user) {
         return <Navigate to="/auth/login" state={{ from: location }} replace />;
     }
     else return (

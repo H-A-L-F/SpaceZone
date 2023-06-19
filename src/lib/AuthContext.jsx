@@ -86,7 +86,9 @@ export function UserAuthContextProvider({ children }) {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(FB_AUTH, (currentUser) => {
             try {
-                getDoc(doc(FB_DB, "user", currentUser.uid)).then((u) => {
+                const tempUser = JSON.parse(window.localStorage.getItem('user'))
+                if(tempUser) setUser(tempUser)
+                else getDoc(doc(FB_DB, "user", currentUser.uid)).then((u) => {
                     const data = { ...u.data(), id: u.id }
                     setUser(data);
                     window.localStorage.setItem('user', JSON.stringify(data))
