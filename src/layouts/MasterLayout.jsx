@@ -1,10 +1,25 @@
 import { Box, Button, ButtonGroup, Drawer, DrawerBody, DrawerContent, DrawerHeader, DrawerOverlay, Flex, Heading, IconButton, Spacer, useDisclosure } from '@chakra-ui/react'
 import { HiMenu } from "react-icons/hi";
 import React from 'react'
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Navigate, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { useUserAuth } from '../lib/AuthContext';
 
 const MasterLayout = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
+
+    const { user, logout } = useUserAuth()
+    const location = useLocation()
+    const navigate = useNavigate()
+
+    if (!user && !JSON.parse(window.localStorage.getItem('user'))) {
+        return <Navigate to="/auth/login" state={{ from: location }} replace />;
+    }
+
+    function handleLogout() {
+        logout().then(() => {
+            navigate("/auth/login")
+        })
+    }
 
     return (
         <Flex direction="column" height="100vh">
@@ -17,6 +32,7 @@ const MasterLayout = () => {
                 <ButtonGroup gap='2'>
                     <Button colorScheme='secondary'>Sign Up</Button>
                     <Button colorScheme='primary'>Log in</Button>
+                    <Button onClick={handleLogout} colorScheme='primary'>Logout</Button>
                 </ButtonGroup>
             </Flex>
             <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
