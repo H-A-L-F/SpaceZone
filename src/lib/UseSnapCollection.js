@@ -1,7 +1,7 @@
 import { onSnapshot } from "firebase/firestore";
 import { useEffect, useReducer } from "react";
-import { firestoreFetchError, firestoreFetchLoading, firestoreFetchSuccess, FIRESTORE_FETCH_IDLE, FIRESTORE_FETCH_LOADING } from "../actions/useSnapCollection";
-import reducer from "../reducers/useSnapCollection";
+import { firestoreFetchError, firestoreFetchLoading, firestoreFetchSuccess, FIRESTORE_FETCH_IDLE, FIRESTORE_FETCH_LOADING } from "../actions/UseSnapCollection";
+import reducer from "../reducers/UseSnapCollection";
 
 export function useSnapCollection(ref) {
     const initialState = {
