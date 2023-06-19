@@ -1,4 +1,4 @@
-import { Badge, Button, Card, CardBody, CardFooter, Heading, Image, Stack, Text } from '@chakra-ui/react'
+import { Badge, Box, Button, Card, CardBody, CardFooter, Heading, Image, Spacer, Stack, Text } from '@chakra-ui/react'
 import { getDoc } from 'firebase/firestore'
 import React, { useEffect, useState } from 'react'
 import SpaceCardSkele from './SpaceCardSkele'
@@ -6,8 +6,18 @@ import { STATUS_COMPLETED, STATUS_ONGOING, STATUS_PENDING } from '../models/Book
 
 const BookingCard = ({ booking, confirm, handleConfirm }) => {
     const [space, setSpace] = useState()
+    const [booker, setBooker] = useState()
 
     useEffect(() => {
+        getDoc(booking.userRef)
+            .then((o) => {
+                const data = { ...o.data(), id: o.id }
+                setBooker(data)
+            })
+            .catch((e) => {
+                console.log(e)
+            })
+
         getDoc(booking.spaceRef)
             .then((o) => {
                 const data = { ...o.data(), id: o.id }
@@ -16,7 +26,7 @@ const BookingCard = ({ booking, confirm, handleConfirm }) => {
             .catch((e) => {
                 console.log(e)
             })
-    }, [booking.spaceRef])
+    }, [booking.spaceRef, booking.userRef])
 
     function getColor() {
         if (booking.status === STATUS_PENDING) return "yellow"
@@ -60,6 +70,12 @@ const BookingCard = ({ booking, confirm, handleConfirm }) => {
                     <Text py='2' maxW={48} noOfLines={3}>
                         {space.desc}
                     </Text>
+
+                    <Spacer />
+
+                    <Box bg="quartery.400" w="fit-content" fontWeight="bold" color="primary.700" borderRadius="md" px="2" alignItems="center">
+                        {booker.username}
+                    </Box>
                 </CardBody>
 
                 <CardFooter>
