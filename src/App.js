@@ -6,6 +6,7 @@ import NotFound from './pages/NotFound';
 import AddSpace from './pages/AddSpace';
 import AuthLayout from './layouts/AuthLayout';
 import Register from './pages/Register';
+import Login from './pages/Login';
 
 
 function App() {
@@ -13,7 +14,7 @@ function App() {
     <Routes>
       <Route path='auth' element={<AuthLayout />}>
         <Route path='register' element={<Register />} />
-        <Route path='login' element={<Home />} />
+        <Route path='login' element={<Login />} />
       </Route>
       <Route path='/' element={<MasterLayout />}>
         <Route path='home' element={<Home />} />
