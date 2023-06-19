@@ -8,6 +8,7 @@ import {
 } from '@chakra-ui/react';
 import theme from './Theme';
 import { UserAuthContextProvider } from './lib/AuthContext';
+import { LoadingContextProvider } from './lib/LoadingContext';
 
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
@@ -16,11 +17,13 @@ root.render(
   <StrictMode>
     <ColorModeScript initialColorMode={theme.config.initialColorMode} />
     <ChakraProvider theme={theme}>
-      <BrowserRouter>
-        <UserAuthContextProvider>
-          <App />
-        </UserAuthContextProvider>
-      </BrowserRouter>
+      <LoadingContextProvider>
+        <BrowserRouter>
+          <UserAuthContextProvider>
+            <App />
+          </UserAuthContextProvider>
+        </BrowserRouter>
+      </LoadingContextProvider>
     </ChakraProvider>
   </StrictMode>
 );
