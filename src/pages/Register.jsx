@@ -13,10 +13,6 @@ const Register = () => {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    console.log(email)
-    console.log(uname)
-    console.log(password)
-
     signUp(email, password)
       .then((user) => {
         saveUser(FB_AUTH.currentUser.uid, email, password, uname)

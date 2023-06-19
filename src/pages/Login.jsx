@@ -1,14 +1,23 @@
 import { Box, Button, Center, Flex, FormControl, FormLabel, Heading, Input, Spacer } from '@chakra-ui/react'
 import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { useUserAuth } from '../lib/AuthContext'
 
 const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
+    const { login } = useUserAuth()
+    const navigate = useNavigate()
+
     const handleSubmit = () => {
-        console.log(email)
-        console.log(password)
+        login(email, password)
+            .then(() => {
+                navigate("/")
+            })
+            .catch((e) => {
+                console.log(e)
+            })
     }
 
     return (
