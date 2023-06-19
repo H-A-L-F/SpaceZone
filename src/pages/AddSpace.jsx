@@ -56,6 +56,9 @@ const AddSpace = () => {
                     onChange={handleDescChange}
                     placeholder='Enter a space description'
                     size='sm'
+                    borderColor="primary.700"
+                    focusBorderColor='tertiary.500'
+                    _hover={{borderColor : 'tertiary.500'}}
                 />
             </FormControl>
             <FormControl isRequired>
