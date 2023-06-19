@@ -7,11 +7,12 @@ import { Flex, Heading, Wrap, WrapItem } from '@chakra-ui/react'
 import { FIRESTORE_FETCH_LOADING } from '../actions/UseSnapCollection'
 import SpaceCardSkele from '../components/SpaceCardSkele'
 import BookingCard from '../components/BookingCard'
+import { STATUS_COMPLETED, STATUS_ONGOING, STATUS_PENDING } from '../models/Booking'
 
 const Bookings = () => {
     const { user } = useUserAuth()
 
-    const bookingsState = useSnapCollection(query(collection(FB_DB, "booking"), where("userRef", "==", doc(FB_DB, "user", user.id))))
+    const bookingsState = useSnapCollection(query(collection(FB_DB, "booking"), where("userRef", "==", doc(FB_DB, "user", user.id)) , where("status", "==", STATUS_PENDING)))
 
     console.log(user.path)
 
@@ -20,7 +21,7 @@ const Bookings = () => {
 
     }, [bookingsState])
 
-
+    // if(!bookingsState.data) return <Heading color="primary.700">Empty...</Heading>
     return (
         <Flex flexDir="column" color="primary.700" gap="4">
             <Heading>Bookings</Heading>

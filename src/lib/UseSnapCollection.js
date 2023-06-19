@@ -32,7 +32,7 @@ export function useSnapCollection(ref) {
 }
 
 function getDocData(doc) {
-    return doc ? { id: doc.id, ...doc.data() } : null
+    return doc ? { id: doc.id, ...doc.data() } : []
 }
 
 function getCollectionData(collection) {
