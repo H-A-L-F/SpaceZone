@@ -6,6 +6,7 @@ import { addDoc, collection, doc } from 'firebase/firestore'
 import { constructSpace } from '../models/Space'
 import { useUserAuth } from '../lib/AuthContext'
 import { useNavigate } from 'react-router-dom'
+import { useLoadingContext } from '../lib/LoadingContext'
 
 const AddSpace = () => {
     const [name, setName] = useState()
@@ -16,6 +17,7 @@ const AddSpace = () => {
     const { user } = useUserAuth()
     const toast = useToast()
     const navigate = useNavigate()
+    const {setLoading} = useLoadingContext()
 
     const handleNameChange = (e) => {
         const inputValue = e.target.value
@@ -33,6 +35,8 @@ const AddSpace = () => {
     const handleSubmit = () => {
         if (!imageUpload) return
 
+        setLoading(true)
+
         const imageRef = ref(FB_STORAGE, `images/${imageUpload.name}`)
 
         uploadBytes(imageRef, imageUpload).then((snapshot) => {
@@ -48,6 +52,7 @@ const AddSpace = () => {
                             isClosable: true,
                         })
                         navigate("/")
+                        setLoading(false)
                     })
                     .catch((e) => {
                         toast({
