@@ -46,7 +46,7 @@ const MasterLayout = () => {
                     </DrawerBody>
                 </DrawerContent>
             </Drawer>
-            <Box flex="1" p={4}>
+            <Box flex="1" paddingX={8} paddingY={4}>
                 <Outlet />
             </Box>
         </Flex>
