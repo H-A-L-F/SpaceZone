@@ -1,5 +1,6 @@
-import { Box, Button, Flex, FormControl, FormLabel, Heading, Input, Spacer } from '@chakra-ui/react'
+import { Box, Button, Center, Container, Flex, FormControl, FormLabel, Heading, Input, Spacer } from '@chakra-ui/react'
 import React, { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 
 const Register = () => {
   const [email, setEmail] = useState("")
@@ -35,6 +36,9 @@ const Register = () => {
         />
       </FormControl>
       <Spacer />
+      <Center color="primary.700" alignSelf="center" w="sm">
+        <NavLink to="/auth/login">Already have an account? Login</NavLink>
+      </Center>
       <Button onClick={handleSubmit} colorScheme='primary' variant='solid' w="sm" alignSelf="center">
         Submit
       </Button>
