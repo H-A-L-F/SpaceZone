@@ -1,34 +1,41 @@
 import { Button, ButtonGroup, Card, CardBody, CardFooter, Divider, Heading, Image, Stack, Text } from '@chakra-ui/react'
 import React from 'react'
 
-const SpaceCard = () => {
+const SpaceCard = ({ space }) => {
+    function convertRp(val) {
+        const formatter = new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+        });
+
+        return formatter.format(val);
+    }
+
     return (
-        <Card maxW='sm'>
+        <Card maxW='sm' bg="quartery.100" shadow="lg" color="primary.700">
             <CardBody>
                 <Image
-                    src='https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
+                    src={space.photoURL}
                     alt='Green double couch with wooden legs'
                     borderRadius='lg'
                 />
                 <Stack mt='6' spacing='3'>
-                    <Heading size='md'>Living room Sofa</Heading>
+                    <Heading size='md'>{space.name}</Heading>
                     <Text>
-                        This sofa is perfect for modern tropical spaces, baroque inspired
-                        spaces, earthy toned spaces and for people who love a chic design with a
-                        sprinkle of vintage design.
+                        {space.desc}
                     </Text>
-                    <Text color='blue.600' fontSize='2xl'>
-                        $450
+                    <Text fontSize='2xl'>
+                        {convertRp(space.price)}
                     </Text>
                 </Stack>
             </CardBody>
             <Divider />
             <CardFooter>
                 <ButtonGroup spacing='2'>
-                    <Button variant='solid' colorScheme='blue'>
+                    <Button variant='solid' colorScheme='primary'>
                         Buy now
                     </Button>
-                    <Button variant='ghost' colorScheme='blue'>
+                    <Button variant='quarteryBtn'>
                         Add to cart
                     </Button>
                 </ButtonGroup>
