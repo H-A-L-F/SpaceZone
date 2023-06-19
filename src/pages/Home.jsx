@@ -1,14 +1,17 @@
 import { Box, Flex, Heading, SkeletonCircle, SkeletonText, Wrap, WrapItem } from '@chakra-ui/react'
-import { collection } from 'firebase/firestore'
+import { collection, doc, query, where } from 'firebase/firestore'
 import React, { useState } from 'react'
 import { FB_DB } from '../lib/Firebase'
 import { useSnapCollection } from '../lib/UseSnapCollection'
 import { FIRESTORE_FETCH_LOADING } from '../actions/UseSnapCollection'
 import SpaceCard from '../components/SpaceCard'
 import SpaceCardSkele from '../components/SpaceCardSkele'
+import { useUserAuth } from '../lib/AuthContext'
 
 const Home = () => {
-  const spacesState = useSnapCollection(collection(FB_DB, "space"))
+  const {user} = useUserAuth()
+
+  const spacesState = useSnapCollection(query(collection(FB_DB, "space"), where("userRef", "!=", doc(FB_DB, "user", user.id))))
 
   return (
     <Flex flexDir="column" color="primary.700" gap="4">

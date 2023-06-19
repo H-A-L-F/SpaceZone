@@ -44,17 +44,21 @@ const MasterLayout = () => {
                 <DrawerContent bg="primary.500">
                     <DrawerHeader borderBottomWidth='1px'>Space Zone</DrawerHeader>
                     <DrawerBody>
-                        <Button variant="primaryBtn" w="full">
+                        <Button onClick={() => navigate("/booking")} variant="primaryBtn" w="full">
                             <NavLink to="/booking">Bookings</NavLink>
+                            <Spacer />
                         </Button>
-                        <Button variant="primaryBtn" w="full">
+                        <Button onClick={() => navigate("/booking/order")} variant="primaryBtn" w="full">
                             <NavLink to="/booking/order">Orders</NavLink>
+                            <Spacer />
                         </Button>
-                        <Button variant="primaryBtn" w="full">
+                        <Button onClick={() => navigate("/booking/history")} variant="primaryBtn" w="full">
                             <NavLink to="/booking/history">History</NavLink>
+                            <Spacer />
                         </Button>
-                        <Button variant="primaryBtn" w="full">
+                        <Button onClick={() => navigate("/space/add")} variant="primaryBtn" w="full">
                             <NavLink to="/space/add">Add Space</NavLink>
+                            <Spacer />
                         </Button>
                     </DrawerBody>
                 </DrawerContent>
