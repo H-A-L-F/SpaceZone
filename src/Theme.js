@@ -1,6 +1,23 @@
 import {
     extendTheme
 } from '@chakra-ui/react';
+import { inputAnatomy } from '@chakra-ui/anatomy'
+import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
+
+const { definePartsStyle, defineMultiStyleConfig } =
+    createMultiStyleConfigHelpers(inputAnatomy.keys)
+
+const baseStyle = definePartsStyle({
+    field: {
+        borderColor: "primary.700",
+        focusBorderColor: 'tertiary.500',
+        _hover: { borderColor: 'tertiary.500' },
+        _focus: { borderColor: 'tertiary.500' },
+        _active: { borderColor: 'tertiary.500' },
+    },
+})
+
+const inputTheme = defineMultiStyleConfig({ baseStyle })
 
 const config = {
     initialColorMode: 'light',
@@ -73,6 +90,11 @@ const theme = extendTheme({
     config,
     styles,
     colors,
+    components: {
+        Input: inputTheme,
+        NumberInput: inputTheme,
+        TexteInput: inputTheme,
+    },
 });
 
 export default theme
