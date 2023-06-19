@@ -11,10 +11,6 @@ const MasterLayout = () => {
     const location = useLocation()
     const navigate = useNavigate()
 
-    if (!user && !JSON.parse(window.localStorage.getItem('user'))) {
-        return <Navigate to="/auth/login" state={{ from: location }} replace />;
-    }
-
     function handleLogout() {
         logout().then(() => {
             navigate("/auth/login")
@@ -22,8 +18,10 @@ const MasterLayout = () => {
     }
 
     console.log(user)
-
-    return (
+    if (!user || !JSON.parse(window.localStorage.getItem('user'))) {
+        return <Navigate to="/auth/login" state={{ from: location }} replace />;
+    }
+    else return (
         <Flex direction="column" height="100vh">
             <Flex minWidth='full' bg="tertiary.500" alignItems='center' gap='2' p='2'>
                 <IconButton onClick={onOpen} aria-label='Search database' colorScheme='primary' icon={<HiMenu />} />
