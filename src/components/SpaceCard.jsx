@@ -46,10 +46,6 @@ const SpaceCard = ({ space }) => {
             })
     }
 
-    function handleUnBook() {
-
-    }
-
     return (
         <Card maxW='sm' bg="quartery.100" shadow="lg" color="primary.700">
             <CardBody>
@@ -76,9 +72,6 @@ const SpaceCard = ({ space }) => {
                 <ButtonGroup spacing='2'>
                     <Button onClick={handleBook} variant='solid' colorScheme='primary'>
                         Book now
-                    </Button>
-                    <Button variant='quarteryBtn'>
-                        Unbook
                     </Button>
                 </ButtonGroup>
             </CardFooter>
