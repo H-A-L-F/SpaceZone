@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import SpaceCardSkele from './SpaceCardSkele'
 import { STATUS_COMPLETED, STATUS_ONGOING, STATUS_PENDING } from '../models/Booking'
 
-const BookingCard = ({ booking }) => {
+const BookingCard = ({ booking, confirm, handleConfirm }) => {
     const [space, setSpace] = useState()
 
     useEffect(() => {
@@ -24,8 +24,9 @@ const BookingCard = ({ booking }) => {
         if (booking.status === STATUS_COMPLETED) return "green"
     }
 
-    function handleConfirm() {
-
+    function getText() {
+        if (booking.status === STATUS_PENDING) return "Confirm"
+        if (booking.status === STATUS_ONGOING) return "Finish"
     }
 
     if (!space) return <SpaceCardSkele />
@@ -62,10 +63,12 @@ const BookingCard = ({ booking }) => {
                 </CardBody>
 
                 <CardFooter>
-                    <Button variant='solid' colorScheme='primary'>
-                        Confirm
-                    </Button>
-
+                    {
+                        confirm &&
+                        <Button onClick={handleConfirm} variant='solid' colorScheme='primary'>
+                            {getText()}
+                        </Button>
+                    }
                 </CardFooter>
             </Stack>
         </Card>
