@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useUserAuth } from '../lib/AuthContext'
 import { FB_AUTH } from '../lib/Firebase'
+import { useLoadingContext } from '../lib/LoadingContext'
 
 const Register = () => {
   const [email, setEmail] = useState("")
@@ -10,22 +11,28 @@ const Register = () => {
   const [password, setPassword] = useState("")
   const { signUp, setName, saveUser, signInAndCreateUserDocument } = useUserAuth()
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+  const {setLoading} = useLoadingContext()
 
   const handleSubmit = () => {
+    setLoading(true)
+
     signUp(email, password)
       .then((user) => {
         saveUser(FB_AUTH.currentUser.uid, email, password, uname)
         setName(uname)
           .then(() => {
             navigate('/')
+            setLoading(false)
           })
           .catch((err) => {
             console.log(err);
+            setLoading(false)
           });
       })
       .catch(err => {
         console.log(err);
+        setLoading(false)
       });
 
     // if (signInAndCreateUserDocument(email, password, uname)) navigate('/')

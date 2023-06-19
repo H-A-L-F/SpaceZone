@@ -2,6 +2,7 @@ import { Box, Button, Center, Flex, FormControl, FormLabel, Heading, Input, Spac
 import React, { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useUserAuth } from '../lib/AuthContext'
+import { useLoadingContext } from '../lib/LoadingContext'
 
 const Login = () => {
     const [email, setEmail] = useState("")
@@ -9,11 +10,15 @@ const Login = () => {
 
     const { login } = useUserAuth()
     const navigate = useNavigate()
+    const {setLoading} = useLoadingContext()
 
     const handleSubmit = () => {
+        setLoading(true)
+
         login(email, password)
             .then(() => {
                 navigate("/")
+                setLoading(false)
             })
             .catch((e) => {
                 console.log(e)
