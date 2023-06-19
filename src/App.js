@@ -10,6 +10,7 @@ import Login from './pages/Login';
 import Bookings from './pages/Bookings';
 import Orders from './pages/Orders';
 import History from './pages/History';
+import ManageSpace from './pages/ManageSpace';
 
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
         <Route path='' element={<Home />} />
         <Route path='space'>
           <Route path='add' element={<AddSpace />} />
-          <Route path='manage' element={<AddSpace />} />
+          <Route path='manage' element={<ManageSpace />} />
         </Route>
         <Route path='booking'>
           <Route path='' element={<Bookings />} />
