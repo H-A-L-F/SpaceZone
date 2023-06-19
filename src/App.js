@@ -20,12 +20,12 @@ function App() {
         <Route path='login' element={<Login />} />
       </Route>
       <Route path='/' element={<MasterLayout />}>
-        <Route path='/' element={<Home />} />
+        <Route path='' element={<Home />} />
         <Route path='space'>
           <Route path='add' element={<AddSpace />} />
         </Route>
         <Route path='booking'>
-          <Route path='/' element={<Bookings />} />
+          <Route path='' element={<Bookings />} />
           <Route path='order' element={<Orders />} />
           <Route path='history' element={<History />} />
         </Route>

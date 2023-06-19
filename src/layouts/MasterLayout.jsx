@@ -25,9 +25,9 @@ const MasterLayout = () => {
         <Flex direction="column" height="100vh">
             <Flex minWidth='full' bg="tertiary.500" alignItems='center' gap='2' p='2'>
                 <IconButton onClick={onOpen} aria-label='Search database' colorScheme='primary' icon={<HiMenu />} />
-                <Box>
+                <Button variant='tertiaryBtn' onClick={() => navigate("/")}>
                     <Heading size='md'>Space Zone</Heading>
-                </Box>
+                </Button>
                 <Spacer />
                 <ButtonGroup gap='2'>
                     <Center fontSize="lg" fontWeight="bold">

@@ -31,10 +31,16 @@ const quarteryBtn = defineStyle({
     textColor: "primary.700",
 })
 
+const tertiaryBtn = defineStyle({
+    color: "tertiary.500",
+    _hover: { bg: "tertiary.600" },
+    textColor: "quartery.50",
+})
+
 const inputTheme = defineMultiStyleConfig({ baseStyle })
 
 export const buttonTheme = defineStyleConfig({
-    variants: { primaryBtn, quarteryBtn },
+    variants: { primaryBtn, quarteryBtn, tertiaryBtn },
 })
 
 const config = {
