@@ -17,7 +17,6 @@ const MasterLayout = () => {
         })
     }
 
-    console.log(user)
     if (!user || !JSON.parse(window.localStorage.getItem('user'))) {
         return <Navigate to="/auth/login" state={{ from: location }} replace />;
     }
