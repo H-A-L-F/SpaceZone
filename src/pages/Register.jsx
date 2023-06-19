@@ -1,4 +1,4 @@
-import { Box, Button, Container, Flex, FormControl, FormLabel, Heading, Input, Spacer } from '@chakra-ui/react'
+import { Box, Button, Flex, FormControl, FormLabel, Heading, Input, Spacer } from '@chakra-ui/react'
 import React, { useState } from 'react'
 
 const Register = () => {
