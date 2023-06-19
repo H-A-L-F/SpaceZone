@@ -97,7 +97,7 @@ export function UserAuthContextProvider({ children }) {
             }
         });
         return unsubscribe;
-    }, []);
+    }, [setUser, navigate]);
 
     return (
         <userAuthContext.Provider value={{ user, refreshPage, signUp, login, logout, setName, saveUser, signInAndCreateUserDocument }}>
