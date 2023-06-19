@@ -7,8 +7,8 @@ import {
     updateProfile,
 } from "firebase/auth";
 import { FB_AUTH, FB_DB } from "./Firebase";
-import { useLocation } from "react-router-dom";
-import { addDoc, collection, doc, getDoc, setDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
+import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 import { constructUser } from "../models/User";
 
 const userAuthContext = createContext();
@@ -17,7 +17,7 @@ export function UserAuthContextProvider({ children }) {
     const [user, setUser] = useState(null);
     const [refresh, setRefresh] = useState(true);
 
-    const location = useLocation();
+    const navigate = useNavigate()
 
     function refreshPage() {
         if (refresh) {
@@ -89,15 +89,15 @@ export function UserAuthContextProvider({ children }) {
                 getDoc(doc(FB_DB, "user", currentUser.uid)).then((u) => {
                     const data = { ...u.data(), id: u.id }
                     setUser(data);
-                    console.log(data)
                     window.localStorage.setItem('user', JSON.stringify(data))
+                    navigate("/")
                 })
             } catch (error) {
                 console.log(error)
             }
         });
         return unsubscribe;
-    }, [location, refresh]);
+    }, []);
 
     return (
         <userAuthContext.Provider value={{ user, refreshPage, signUp, login, logout, setName, saveUser, signInAndCreateUserDocument }}>

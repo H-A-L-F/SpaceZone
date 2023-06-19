@@ -25,12 +25,8 @@ const AddSpace = () => {
     const handleSubmit = () => {
         if (!imageUpload) return
 
-        console.log(imageUpload)
-        console.log(`images/${imageUpload.name}`)
         const imageRef = ref(FB_STORAGE, `images/${imageUpload.name}`)
         
-        console.log(ref)
-
         uploadBytes(imageRef, imageUpload).then((snapshot) => {
             getDownloadURL(snapshot.ref).then((url) => {
                 console.log(url)
