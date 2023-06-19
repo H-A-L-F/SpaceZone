@@ -3,10 +3,12 @@ import { addDoc, collection, doc } from 'firebase/firestore';
 import React from 'react'
 import { FB_DB } from '../lib/Firebase';
 import { STATUS_PENDING, constructBooking } from '../models/Booking';
+import { useUserAuth } from '../lib/AuthContext';
 
 const SpaceCard = ({ space }) => {
 
     const toast = useToast()
+    const {user} = useUserAuth()
 
     function convertRp(val) {
         const formatter = new Intl.NumberFormat('id-ID', {
@@ -18,11 +20,12 @@ const SpaceCard = ({ space }) => {
     }
 
     function handleBook() {
-        const userRef = space.userRef
+        const userRef = doc(FB_DB, "user", user.id)
+        const ownerRef = space.userRef
         const spaceRef = doc(FB_DB, "space", space.id)
         const status = STATUS_PENDING
         const bookingRef = collection(FB_DB, "booking")
-        const booking = constructBooking(userRef, spaceRef, status)
+        const booking = constructBooking(userRef, ownerRef, spaceRef, status)
 
         addDoc(bookingRef, booking)
             .then(() => {

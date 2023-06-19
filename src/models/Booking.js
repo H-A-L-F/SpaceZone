@@ -1,6 +1,7 @@
-export function constructBooking(userRef, spaceRef, status) {
+export function constructBooking(userRef, ownerRef, spaceRef, status) {
     const booking = {
         userRef: userRef,
+        ownerRef: ownerRef,
         spaceRef: spaceRef,
         status: status,
     }
