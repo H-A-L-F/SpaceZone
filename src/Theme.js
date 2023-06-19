@@ -21,7 +21,7 @@ const baseStyle = definePartsStyle({
 
 const primaryBtn = defineStyle({
     color: "quartry.50",
-    _hover: { color: "primary.700", bg: "quartery.50" },
+    _hover: { bg: "primary.400" },
     textColor: "quartry.50",
 })
 
