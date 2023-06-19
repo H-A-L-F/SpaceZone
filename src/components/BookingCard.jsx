@@ -19,9 +19,9 @@ const BookingCard = ({ booking }) => {
     }, [booking.spaceRef])
 
     function getColor() {
-        if(booking.status === STATUS_PENDING) return "yellow"
-        if(booking.status === STATUS_ONGOING) return "blue"
-        if(booking.status === STATUS_COMPLETED) return "green"
+        if (booking.status === STATUS_PENDING) return "yellow"
+        if (booking.status === STATUS_ONGOING) return "blue"
+        if (booking.status === STATUS_COMPLETED) return "green"
     }
 
     function handleConfirm() {
@@ -34,6 +34,9 @@ const BookingCard = ({ booking }) => {
             direction={{ base: 'column', sm: 'row' }}
             overflow='hidden'
             variant='outline'
+            bg="quartery.100"
+            shadow="lg"
+            color="primary.700"
         >
             <Image
                 w="400px"
@@ -59,7 +62,7 @@ const BookingCard = ({ booking }) => {
                 </CardBody>
 
                 <CardFooter>
-                    <Button variant='solid' colorScheme='blue'>
+                    <Button variant='solid' colorScheme='primary'>
                         Confirm
                     </Button>
 
