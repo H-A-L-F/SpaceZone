@@ -17,7 +17,7 @@ function App() {
         <Route path='login' element={<Login />} />
       </Route>
       <Route path='/' element={<MasterLayout />}>
-        <Route path='home' element={<Home />} />
+        <Route path='/' element={<Home />} />
         <Route path='space'>
           <Route path='add' element={<AddSpace />} />
         </Route>
