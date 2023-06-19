@@ -1,13 +1,21 @@
-import { Button, Flex, FormControl, FormLabel, Heading, Input, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, Spacer, Textarea } from '@chakra-ui/react'
+import { Button, Flex, FormControl, FormLabel, Heading, Input, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, Spacer, Textarea, space, useToast } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
-import { FB_STORAGE } from '../lib/Firebase'
+import { FB_DB, FB_STORAGE } from '../lib/Firebase'
+import { addDoc, collection, doc } from 'firebase/firestore'
+import { constructSpace } from '../models/Space'
+import { useUserAuth } from '../lib/AuthContext'
+import { useNavigate } from 'react-router-dom'
 
 const AddSpace = () => {
     const [name, setName] = useState()
     const [desc, setDesc] = useState('')
     const [price, setPrice] = useState('1,000,000')
     const [imageUpload, setImageUpload] = useState()
+
+    const { user } = useUserAuth()
+    const toast = useToast()
+    const navigate = useNavigate()
 
     const handleNameChange = (e) => {
         const inputValue = e.target.value
@@ -26,10 +34,29 @@ const AddSpace = () => {
         if (!imageUpload) return
 
         const imageRef = ref(FB_STORAGE, `images/${imageUpload.name}`)
-        
+
         uploadBytes(imageRef, imageUpload).then((snapshot) => {
             getDownloadURL(snapshot.ref).then((url) => {
-                console.log(url)
+                const userRef = doc(FB_DB, "user", user.id)
+                const spaceRef = collection(userRef, "space")
+                addDoc(spaceRef, constructSpace(name, desc, price, url))
+                    .then(() => {
+                        toast({
+                            title: `Successfully added space!`,
+                            status: "success",
+                            position: "top-right",
+                            isClosable: true,
+                        })
+                        navigate("/")
+                    })
+                    .catch((e) => {
+                        toast({
+                            title: `Error: ${e.message}`,
+                            status: "error",
+                            position: "top-right",
+                            isClosable: true,
+                        })
+                    })
             })
         })
     }
@@ -54,7 +81,7 @@ const AddSpace = () => {
                     size='sm'
                     borderColor="primary.700"
                     focusBorderColor='tertiary.500'
-                    _hover={{borderColor : 'tertiary.500'}}
+                    _hover={{ borderColor: 'tertiary.500' }}
                 />
             </FormControl>
             <FormControl isRequired>
