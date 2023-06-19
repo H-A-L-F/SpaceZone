@@ -37,7 +37,7 @@ const Login = () => {
             </FormControl>
             <Spacer />
             <Center color="primary.700" alignSelf="center" w="sm">
-                <NavLink to="/auth/login">Dont't have an account? Register</NavLink>
+                <NavLink to="/auth/register">Dont't have an account? Register</NavLink>
             </Center>
             <Button onClick={handleSubmit} colorScheme='primary' variant='solid' w="sm" alignSelf="center">
                 Submit
