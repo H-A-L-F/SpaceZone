@@ -1,8 +1,9 @@
-import { Box, Button, ButtonGroup, Center, Drawer, DrawerBody, DrawerContent, DrawerHeader, DrawerOverlay, Flex, Heading, IconButton, Spacer, Text, useDisclosure } from '@chakra-ui/react'
+import { Badge, Box, Button, ButtonGroup, Center, Drawer, DrawerBody, DrawerContent, DrawerHeader, DrawerOverlay, Flex, Heading, IconButton, Spacer, Text, useDisclosure } from '@chakra-ui/react'
 import { HiMenu } from "react-icons/hi";
 import React from 'react'
 import { NavLink, Navigate, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useUserAuth } from '../lib/AuthContext';
+import { HiShoppingCart } from "react-icons/hi";
 
 const MasterLayout = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -32,6 +33,9 @@ const MasterLayout = () => {
                     <Center fontSize="lg" fontWeight="bold">
                         {user.username}
                     </Center>
+                    <Button colorScheme='primaryBtn' variant='ghost'>
+                        <HiShoppingCart size={28} />
+                    </Button>
                     <Button onClick={handleLogout} colorScheme='primary'>Logout</Button>
                 </ButtonGroup>
             </Flex>

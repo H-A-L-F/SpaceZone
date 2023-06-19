@@ -15,13 +15,16 @@ const SpaceCard = ({ space }) => {
         <Card maxW='sm' bg="quartery.100" shadow="lg" color="primary.700">
             <CardBody>
                 <Image
+                    w="full"
+                    h="200px"
+                    objectFit='cover'
                     src={space.photoURL}
                     alt='Green double couch with wooden legs'
                     borderRadius='lg'
                 />
                 <Stack mt='6' spacing='3'>
                     <Heading size='md'>{space.name}</Heading>
-                    <Text>
+                    <Text noOfLines={3}>
                         {space.desc}
                     </Text>
                     <Text fontSize='2xl'>
@@ -33,10 +36,10 @@ const SpaceCard = ({ space }) => {
             <CardFooter>
                 <ButtonGroup spacing='2'>
                     <Button variant='solid' colorScheme='primary'>
-                        Buy now
+                        Book now
                     </Button>
                     <Button variant='quarteryBtn'>
-                        Add to cart
+                        Unbook
                     </Button>
                 </ButtonGroup>
             </CardFooter>
