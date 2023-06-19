@@ -14,7 +14,7 @@ import { constructUser } from "../models/User";
 const userAuthContext = createContext();
 
 export function UserAuthContextProvider({ children }) {
-    const [user, setUser] = useState("");
+    const [user, setUser] = useState(null);
     const [refresh, setRefresh] = useState(true);
 
     const location = useLocation();
@@ -84,16 +84,16 @@ export function UserAuthContextProvider({ children }) {
 
 
     useEffect(() => {
-        if (!FB_AUTH.currentUser) return
         const unsubscribe = onAuthStateChanged(FB_AUTH, (currentUser) => {
             getDoc(doc(FB_DB, "user", currentUser.uid)).then((u) => {
                 const data = { ...u.data(), id: u.id }
                 setUser(data);
+                console.log(data)
                 window.localStorage.setItem('user', JSON.stringify(data))
             })
         });
         return unsubscribe;
-    }, [location, refresh, FB_AUTH.currentUser]);
+    }, [location, refresh]);
 
     return (
         <userAuthContext.Provider value={{ user, refreshPage, signUp, login, logout, setName, saveUser, signInAndCreateUserDocument }}>
