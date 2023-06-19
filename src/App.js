@@ -12,7 +12,6 @@ import Orders from './pages/Orders';
 import History from './pages/History';
 import ManageSpace from './pages/ManageSpace';
 
-
 function App() {
   return (
     <Routes>

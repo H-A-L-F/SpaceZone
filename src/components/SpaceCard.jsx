@@ -1,14 +1,14 @@
 import { Button, ButtonGroup, Card, CardBody, CardFooter, Divider, Heading, Image, Stack, Text, useToast } from '@chakra-ui/react'
-import { addDoc, collection, doc } from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc } from 'firebase/firestore';
 import React from 'react'
 import { FB_DB } from '../lib/Firebase';
 import { STATUS_PENDING, constructBooking } from '../models/Booking';
 import { useUserAuth } from '../lib/AuthContext';
 
-const SpaceCard = ({ space }) => {
+const SpaceCard = ({ space, manage }) => {
 
     const toast = useToast()
-    const {user} = useUserAuth()
+    const { user } = useUserAuth()
 
     function convertRp(val) {
         const formatter = new Intl.NumberFormat('id-ID', {
@@ -31,6 +31,28 @@ const SpaceCard = ({ space }) => {
             .then(() => {
                 toast({
                     title: `Successfully booked space!`,
+                    status: "success",
+                    position: "top-right",
+                    isClosable: true,
+                })
+            })
+            .catch((e) => {
+                toast({
+                    title: `Error: ${e.message}`,
+                    status: "error",
+                    position: "top-right",
+                    isClosable: true,
+                })
+            })
+    }
+
+    function handleDelete() {
+        const spaceRef = doc(FB_DB, "space", space.id)
+
+        deleteDoc(spaceRef)
+            .then(() => {
+                toast({
+                    title: `Successfully removed space!`,
                     status: "success",
                     position: "top-right",
                     isClosable: true,
@@ -70,9 +92,14 @@ const SpaceCard = ({ space }) => {
             <Divider />
             <CardFooter>
                 <ButtonGroup spacing='2'>
-                    <Button onClick={handleBook} variant='solid' colorScheme='primary'>
-                        Book now
-                    </Button>
+                    {manage === true ?
+                        <Button onClick={handleDelete} variant='solid' colorScheme='primary'>
+                            Delete
+                        </Button> :
+                        <Button onClick={handleBook} variant='solid' colorScheme='primary'>
+                            Book now
+                        </Button>
+                    }
                 </ButtonGroup>
             </CardFooter>
         </Card>
