@@ -12,7 +12,7 @@ import { STATUS_COMPLETED, STATUS_ONGOING, STATUS_PENDING } from '../models/Book
 const Bookings = () => {
     const { user } = useUserAuth()
 
-    const bookingsState = useSnapCollection(query(collection(FB_DB, "booking"), where("userRef", "==", doc(FB_DB, "user", user.id)) , where("status", "==", STATUS_PENDING)))
+    const bookingsState = useSnapCollection(query(collection(FB_DB, "booking"), where("userRef", "==", doc(FB_DB, "user", user.id))))
 
     console.log(user.path)
 
