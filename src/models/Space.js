@@ -1,9 +1,10 @@
-export function constructSpace(name, desc, price, photoURL) {
+export function constructSpace(name, desc, price, photoURL, userRef) {
     const space = {
         name: name,
         desc: desc,
         price: parseInt(price),
-        photoURL: photoURL
+        photoURL: photoURL,
+        userRef: userRef
     }
     return space
 }
