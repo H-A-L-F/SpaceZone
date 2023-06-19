@@ -23,6 +23,7 @@ function App() {
         <Route path='' element={<Home />} />
         <Route path='space'>
           <Route path='add' element={<AddSpace />} />
+          <Route path='manage' element={<AddSpace />} />
         </Route>
         <Route path='booking'>
           <Route path='' element={<Bookings />} />

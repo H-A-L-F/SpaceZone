@@ -33,9 +33,6 @@ const MasterLayout = () => {
                     <Center fontSize="lg" fontWeight="bold">
                         {user.username}
                     </Center>
-                    <Button colorScheme='primaryBtn' variant='ghost'>
-                        <HiShoppingCart size={28} />
-                    </Button>
                     <Button onClick={handleLogout} colorScheme='primary'>Logout</Button>
                 </ButtonGroup>
             </Flex>
@@ -58,6 +55,10 @@ const MasterLayout = () => {
                         </Button>
                         <Button onClick={() => navigate("/space/add")} variant="primaryBtn" w="full">
                             <NavLink to="/space/add">Add Space</NavLink>
+                            <Spacer />
+                        </Button>
+                        <Button onClick={() => navigate("/space/manage")} variant="primaryBtn" w="full">
+                            <NavLink to="/space/add">Manage Space</NavLink>
                             <Spacer />
                         </Button>
                     </DrawerBody>
