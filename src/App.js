@@ -7,6 +7,9 @@ import AddSpace from './pages/AddSpace';
 import AuthLayout from './layouts/AuthLayout';
 import Register from './pages/Register';
 import Login from './pages/Login';
+import Bookings from './pages/Bookings';
+import Orders from './pages/Orders';
+import History from './pages/History';
 
 
 function App() {
@@ -20,6 +23,11 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='space'>
           <Route path='add' element={<AddSpace />} />
+        </Route>
+        <Route path='booking'>
+          <Route path='/' element={<Bookings />} />
+          <Route path='order' element={<Orders />} />
+          <Route path='history' element={<History />} />
         </Route>
       </Route>
       <Route path='*' element={<NotFound />} />
