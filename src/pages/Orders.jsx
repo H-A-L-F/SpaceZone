@@ -12,12 +12,7 @@ const Orders = () => {
 
     const { user } = useUserAuth()
 
-    const ordersState = useSnapCollection(query(collection(FB_DB, "booking"), where("ownerRef", "==", user.path)))
-
-    useEffect(() => {
-        console.log(ordersState)
-
-    }, [ordersState])
+    const ordersState = useSnapCollection(query(collection(FB_DB, "booking"), where("ownerRef", "==", doc(FB_DB, "user", user.id))))
 
     return (
         <Flex flexDir="column" color="primary.700" gap="4">
