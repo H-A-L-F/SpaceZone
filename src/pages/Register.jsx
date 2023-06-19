@@ -1,14 +1,38 @@
 import { Box, Button, Center, Flex, FormControl, FormLabel, Heading, Input, Spacer } from '@chakra-ui/react'
 import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { useUserAuth } from '../lib/AuthContext'
+import { FB_AUTH } from '../lib/Firebase'
 
 const Register = () => {
   const [email, setEmail] = useState("")
+  const [uname, setUname] = useState("")
   const [password, setPassword] = useState("")
+  const { signUp, setName, saveUser, signInAndCreateUserDocument } = useUserAuth()
+
+  const navigate = useNavigate();
 
   const handleSubmit = () => {
     console.log(email)
+    console.log(uname)
     console.log(password)
+
+    signUp(email, password)
+      .then((user) => {
+        saveUser(FB_AUTH.currentUser.uid, email, password, uname)
+        setName(uname)
+          .then(() => {
+            navigate('/')
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
+    // if (signInAndCreateUserDocument(email, password, uname)) navigate('/')
   }
 
   return (
@@ -23,6 +47,16 @@ const Register = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder='Email'
+        />
+      </FormControl>
+      <FormControl isRequired>
+        <FormLabel color="primary.700" >Username</FormLabel>
+        <Input
+          color="primary.700"
+          colorScheme='primary'
+          value={uname}
+          onChange={(e) => setUname(e.target.value)}
+          placeholder='Username'
         />
       </FormControl>
       <FormControl isRequired>
