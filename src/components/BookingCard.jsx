@@ -1,10 +1,10 @@
-import { Badge, Box, Button, Card, CardBody, CardFooter, Heading, Image, Spacer, Stack, Text } from '@chakra-ui/react'
+import { Badge, Box, Button, ButtonGroup, Card, CardBody, CardFooter, Heading, Image, Spacer, Stack, Text } from '@chakra-ui/react'
 import { getDoc } from 'firebase/firestore'
 import React, { useEffect, useState } from 'react'
 import SpaceCardSkele from './SpaceCardSkele'
 import { STATUS_COMPLETED, STATUS_ONGOING, STATUS_PENDING } from '../models/Booking'
 
-const BookingCard = ({ booking, confirm, handleConfirm }) => {
+const BookingCard = ({ booking, confirm, handleConfirm, handleDelete }) => {
     const [space, setSpace] = useState()
     const [booker, setBooker] = useState()
 
@@ -77,13 +77,19 @@ const BookingCard = ({ booking, confirm, handleConfirm }) => {
                         {booker.username}
                     </Box>
                 </CardBody>
+                
 
                 <CardFooter>
                     {
                         confirm &&
-                        <Button onClick={handleConfirm} variant='solid' colorScheme='primary'>
-                            {getText()}
-                        </Button>
+                        <ButtonGroup>
+                            <Button onClick={handleConfirm} variant='solid' colorScheme='primary'>
+                                {getText()}
+                            </Button>
+                            <Button onClick={handleDelete} variant='quarteryBtn'>
+                                Reject
+                            </Button>
+                        </ButtonGroup>
                     }
                 </CardFooter>
             </Stack>

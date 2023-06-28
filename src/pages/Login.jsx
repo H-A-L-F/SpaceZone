@@ -38,6 +38,7 @@ const Login = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder='Email'
+                    type='email'
                 />
             </FormControl>
             <FormControl isRequired>
@@ -48,6 +49,7 @@ const Login = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder='Password'
+                    type='password'
                 />
             </FormControl>
             <Spacer />

@@ -15,7 +15,7 @@ const ManageSpace = () => {
 
     return (
         <Flex flexDir="column" color="primary.700" gap="4">
-            <Heading>Browse Spaces</Heading>
+            <Heading>Manage My Spaces</Heading>
             <Wrap spacing='30px'>
                 {
                     spacesState.status === FIRESTORE_FETCH_LOADING ?

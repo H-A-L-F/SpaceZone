@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSnapCollection } from '../lib/UseSnapCollection'
-import { collection, doc, query, updateDoc, where } from 'firebase/firestore'
+import { collection, deleteDoc, doc, query, updateDoc, where } from 'firebase/firestore'
 import { FB_DB } from '../lib/Firebase'
 import { useUserAuth } from '../lib/AuthContext'
 import { Flex, Heading, Wrap, WrapItem, useToast } from '@chakra-ui/react'
@@ -38,6 +38,27 @@ const Orders = () => {
             })
     }
 
+    function handleDelete(b) {
+        const bookingRef = doc(FB_DB, "booking", b.id)
+        deleteDoc(bookingRef)
+            .then(() => {
+                toast({
+                    title: `Successfully confirmed booking!`,
+                    status: "success",
+                    position: "top-right",
+                    isClosable: true,
+                })
+            })
+            .catch((e) => {
+                toast({
+                    title: `Error: ${e.message}`,
+                    status: "error",
+                    position: "top-right",
+                    isClosable: true,
+                })
+            })
+    }
+
     return (
         <Flex flexDir="column" color="primary.700" gap="4">
             <Heading>Orders</Heading>
@@ -55,6 +76,7 @@ const Orders = () => {
                                     booking={b}
                                     confirm={b.status !== STATUS_COMPLETED}
                                     handleConfirm={() => handleConfirm(b)}
+                                    handleDelete={() => handleDelete(b)}
                                 />
                             </WrapItem>
                         )

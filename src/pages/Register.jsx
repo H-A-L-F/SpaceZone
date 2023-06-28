@@ -50,6 +50,7 @@ const Register = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder='Email'
+          type='email'
         />
       </FormControl>
       <FormControl isRequired>
@@ -70,6 +71,7 @@ const Register = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder='Password'
+          type='password'
         />
       </FormControl>
       <Spacer />
