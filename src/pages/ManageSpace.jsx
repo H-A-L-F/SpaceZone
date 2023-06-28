@@ -3,7 +3,7 @@ import { collection, doc, query, where } from 'firebase/firestore'
 import React, { useState } from 'react'
 import { FB_DB } from '../lib/Firebase'
 import { useSnapCollection } from '../lib/UseSnapCollection'
-import { FIRESTORE_FETCH_LOADING } from '../actions/UseSnapCollection'
+import { FIRESTORE_FETCH_LOADING, FIRESTORE_FETCH_SUCCESS } from '../actions/UseSnapCollection'
 import SpaceCard from '../components/SpaceCard'
 import SpaceCardSkele from '../components/SpaceCardSkele'
 import { useUserAuth } from '../lib/AuthContext'
@@ -13,6 +13,7 @@ const ManageSpace = () => {
 
     const spacesState = useSnapCollection(query(collection(FB_DB, "space"), where("userRef", "==", doc(FB_DB, "user", user.id))))
 
+    if(spacesState.status === FIRESTORE_FETCH_SUCCESS && spacesState.data.length <= 0) return <Heading color="primary.700">You have no space to manage...</Heading>
     return (
         <Flex flexDir="column" color="primary.700" gap="4">
             <Heading>Manage My Spaces</Heading>

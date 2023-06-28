@@ -4,7 +4,7 @@ import { collection, deleteDoc, doc, query, updateDoc, where } from 'firebase/fi
 import { FB_DB } from '../lib/Firebase'
 import { useUserAuth } from '../lib/AuthContext'
 import { Flex, Heading, Wrap, WrapItem, useToast } from '@chakra-ui/react'
-import { FIRESTORE_FETCH_LOADING } from '../actions/UseSnapCollection'
+import { FIRESTORE_FETCH_LOADING, FIRESTORE_FETCH_SUCCESS } from '../actions/UseSnapCollection'
 import SpaceCardSkele from '../components/SpaceCardSkele'
 import BookingCard from '../components/BookingCard'
 import { STATUS_COMPLETED, STATUS_ONGOING, STATUS_PENDING } from '../models/Booking'
@@ -59,6 +59,7 @@ const Orders = () => {
             })
     }
 
+    if(ordersState.status === FIRESTORE_FETCH_SUCCESS && ordersState.data.length <= 0) return <Heading color="primary.700">You have no order...</Heading>
     return (
         <Flex flexDir="column" color="primary.700" gap="4">
             <Heading>Orders</Heading>
